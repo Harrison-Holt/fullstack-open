@@ -1,35 +1,37 @@
-const Header = (course) => {
+/* eslint-disable react/prop-types */
+const Header = ({ course }) => {
 
   return (
     <div>
-      <h1>{course.course}</h1>
+      <h1>{course}</h1>
     </div>
   )
 }
 
-
-const Content = (content) => {
-
-    return (
-      <div>
-           <p>
-        {content.content[0].part1} {content.content[0].exercises1}
-      </p>
-      <p>
-        {content.content[1].part2} {content.content[1].exercises2}
-      </p>
-      <p>
-        {content.content[2].part3} {content.content[2].exercises3}
-      </p>
-      </div>
-    )
-  }
+const Part = ({part, exercises}) => {
+  return (
+    <>
+    <p>
+      {part} {exercises}
+    </p>
+    </>
+  )
+}
+const Content = ({ content }) => {
+  return (
+    <>
+      <Part part={content[0].part1} exercises={content[0].exercises1} />
+      <Part part={content[1].part2} exercises={content[1].exercises2} />
+      <Part part={content[2].part3} exercises={content[2].exercises3} />
+    </>
+  );
+};
  
-  const Total = (total) => {
+  const Total = ({ total }) => {
 
     return (
       <div>
-              <p>Number of exercises {total.total}</p>
+              <p>Number of exercises {total}</p>
       </div>
     )
   }
@@ -42,7 +44,7 @@ const App = () => {
     { part2: 'Using props to pass data', exercises2: 7 }, 
     { part3: 'State of a component', exercises3: 14 }
   ]
-
+  
   const total = content[0].exercises1 + content[1].exercises2 + content[2].exercises3
 
   return (
